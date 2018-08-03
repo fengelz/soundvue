@@ -18,9 +18,6 @@ export default {
   name: 'Aside',
   computed: mapState({
     tracks: state => state.tracks.all
-  }),
-  created () {
-    this.$store.dispatch('tracks/getAllTracks')
-  }
+  })
 };
 </script>

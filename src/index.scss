@@ -8,6 +8,11 @@ body,
   margin: 0;
 }
 
+#root {
+  display: flex;
+  flex-direction: row;
+}
+
 * {
   box-sizing: border-box;
 }
