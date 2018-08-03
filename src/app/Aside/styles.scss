@@ -1,0 +1,39 @@
+aside {
+  background: var(--color-pink);
+  height: 100%;
+  max-width: 20%;
+  padding: .75rem;
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    overflow: visible;
+  }
+
+  li {
+    background: var(--color-pink);
+    display: inline-flex;
+    margin-bottom: .5rem;
+    max-width: 100%;
+    overflow: hidden;
+    padding: .3rem .5rem;
+    transition: max-width 100ms ease-in;
+    white-space: nowrap;
+
+    &:hover {
+      max-width: 100vw;
+      overflow: visible;
+    }
+
+    a {
+      text-decoration: none;
+      color: maroon;
+    }
+  }
+
+}
