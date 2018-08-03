@@ -17,7 +17,8 @@ const routes = {
 
 // initial state
 const state = {
-  all: []
+  all: [],
+  selectedTrack: {pos: 0, track: {permalink: ''}}
 };
 
 // getters
@@ -35,6 +36,9 @@ const actions = {
     .catch(err => {
       console.log('Err', err);
     });
+  },
+  setTrack({commit}, track) {
+    commit('setSelectedTrack', track);
   }
 };
 
@@ -42,6 +46,13 @@ const actions = {
 const mutations = {
   setTracks(state, tracks) {
     state.all = tracks.data;
+  },
+  setSelectedTrack(state, route) {
+    const track = state.all.find(item => item.permalink === route.params.track);
+    const pos = state.all.map(item => {
+      return item.permalink;
+    }).indexOf(route.params.track);
+    state.selectedTrack = {pos, track};
   }
 };
 

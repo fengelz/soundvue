@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'history',
+
   routes: [
     {
       path: '/',
@@ -30,7 +31,5 @@ export default new Vue({
   store,
   render: h => h('router-view'),
   created() {
-    // `this` points to the vm instance
-    console.log('a is: fukt');
   }
 });

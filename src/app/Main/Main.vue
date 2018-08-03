@@ -18,6 +18,11 @@ export default {
   computed: mapState({
     tracks: state => state.tracks.all
   }),
+  watch: {
+    $route(to, from) {
+      this.$store.dispatch('tracks/setTrack', to)
+    }
+  },
   created () {
     this.$store.dispatch('tracks/getAllTracks')
   },
