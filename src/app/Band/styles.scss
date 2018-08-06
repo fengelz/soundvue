@@ -28,20 +28,25 @@
 
     &.selected {
       transform: scale(2) perspective(30rem) rotateY(0);
-      z-index: 10;
       transform-origin: center;
+      z-index: 10;
     }
 
     &.previous {
-      transform: scale(1.15) perspective(30rem) rotateY(-60deg) translateZ(75px);
-      // transform: scale(1) perspective(30rem) rotateY(-75deg);
+      transform: scale(1.15) perspective(30rem) rotateY(-60deg) translateZ(72px);
       transform-origin: center;
     }
 
     &.next {
-      transform: scale(1.15) perspective(30rem) rotateY(60deg) translateZ(75px);
-      // transform: scale(1) perspective(30rem) rotateY(75deg);
+      transform: scale(1.15) perspective(30rem) rotateY(60deg) translateZ(72px);
       transform-origin: center;
+    }
+
+    a {
+      display: inline-block;
+      height: 100%;
+      opacity: 0;
+      width: 100%;
     }
   }
 }
