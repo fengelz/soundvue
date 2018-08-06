@@ -6,9 +6,13 @@
       <li :style="{
         backgroundImage: `url(${track.artwork_url? track.artwork_url.replace('large', 'crop') : ''})`
         }" 
-        v-bind:class="{selected:track.permalink === selectedTrack.track.permalink}"
-        v-for="track in tracks" 
-        v-bind:key="track.id">
+        v-for="(track, index) in tracks"
+        v-bind:class="{
+          selected:track.permalink === selectedTrack.track.permalink,
+          previous: tracks[index + 1] && tracks[index + 1].permalink === selectedTrack.track.permalink,
+          next: tracks[index - 1] && tracks[index - 1].permalink === selectedTrack.track.permalink,
+          }"
+        v-bind:key="track.id"> 
         <router-link :to="{path: `/${track.permalink}`}">
           {{ track.title }}
         </router-link>
