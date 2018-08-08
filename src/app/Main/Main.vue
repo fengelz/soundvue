@@ -35,10 +35,7 @@ export default {
   },
   methods: { 
     handleScroll(event) {
-      if (this.timer != -1) clearTimeout(this.timer)
-      this.timer = setTimeout(() => {
-        this.scrollTop = event.target.scrollTop
-      }, 1);
+      this.scrollTop = event.target.scrollTop
     },
   },
   components: {
