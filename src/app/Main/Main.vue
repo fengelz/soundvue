@@ -1,8 +1,9 @@
 <template>
   <div id="root">
     <aside-component></aside-component>
-    <main>
-      <band-component />
+    <main 
+      @scroll="handleScroll">
+      <band-component v-bind:scrollTop="this.scrollTop" />
     </main>
   </div>
 </template>
@@ -15,6 +16,12 @@ import './styles.scss';
 
 export default {
   name: 'Main',
+  timer: -1,
+  data: function() {
+    return { 
+      scrollTop: 0
+    }
+  },
   computed: mapState({
     tracks: state => state.tracks.all
   }),
@@ -25,6 +32,14 @@ export default {
   },
   created () {
     this.$store.dispatch('tracks/getAllTracks')
+  },
+  methods: { 
+    handleScroll(event) {
+      if (this.timer != -1) clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.scrollTop = event.target.scrollTop
+      }, 1);
+    },
   },
   components: {
     'aside-component': Aside,

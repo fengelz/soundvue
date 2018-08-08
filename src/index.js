@@ -6,6 +6,16 @@ import './index.scss';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import VueMq from 'vue-mq';
+Vue.use(VueMq, {
+  breakpoints: {
+    mobile: 450,
+    tablet: 900,
+    laptop: 1250,
+    desktop: Infinity
+  }
+});
+
 const router = new VueRouter({
   mode: 'history',
 

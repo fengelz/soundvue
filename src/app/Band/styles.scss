@@ -1,6 +1,8 @@
+@import '../../../node_modules/sass-mediaqueries/media-queries';
+
 .band {
   align-self: center;
-  background: var(--color-pink);
+  // background: var(--color-pink);
   height: 250px;
   width: 250px;
 
@@ -13,9 +15,15 @@
 
   ul {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100%;
     transition: margin 300ms ease-out;
+    @include mq($max-width: 360px) {
+      width: 100% !important;
+    }
+    @include mq($min-width: 1024px) {
+      flex-direction: row;
+    }
   }
 
   li {
@@ -27,20 +35,39 @@
     width: 250px;
 
     &.selected {
-      transform: scale(2) perspective(22rem) rotateY(0) translateZ(0);
+      transform: scale(1.4) perspective(22rem) rotateY(0) translateZ(0);
       transform-origin: center;
       z-index: 10;
     }
 
     &.previous {
-      transform: scale(1.15) perspective(22rem) rotateY(-58deg) translateZ(78px);
+      transform: scale(1.25, 1.1) perspective(22rem) rotateX(31deg) translateY(-52px);
       transform-origin: center;
     }
 
-    &.next {
-      transform: scale(1.15) perspective(22rem) rotateY(58deg) translateZ(78px);
+    &.selected + li {
+      transform: scale(1.25, 1.1) perspective(22rem) rotateX(-31deg) translateY(52px);
       transform-origin: center;
     }
+
+    @include mq($min-width: 1024px) {
+      &.selected {
+        transform: scale(2) perspective(22rem) rotateY(0) translateZ(0);
+        transform-origin: center;
+        z-index: 10;
+      }
+
+      &.previous {
+        transform: scale(1.15) perspective(22rem) rotateY(-58deg) translateZ(78px);
+        transform-origin: center;
+      }
+
+      &.selected + li {
+        transform: scale(1.15) perspective(22rem) rotateY(58deg) translateZ(78px);
+        transform-origin: center;
+      }
+    }
+    
 
     a {
       display: inline-block;
