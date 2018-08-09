@@ -1,6 +1,6 @@
 <template>
   <div class="band">
-    <span style="position: absolute; top: 0; left: 0">{{this.$props.scrollTop}}</span>
+    <span style="position: absolute; top: 0; left: 0;">{{this.$props.scrollTop}}</span>
     <ul
       :style="{
       width: `${tracks.length * 100}%`, 
@@ -10,7 +10,7 @@
         }" 
         :ref="`d${track.id}`"
         v-for="(track, index) in tracks"
-        v-bind:class="{
+        :class="{
           selected: $mq === 'desktop' ? track.permalink === selectedTrack.track.permalink : selected(`d${track.id}`),
           previous: $mq === 'desktop' ? tracks[index + 1] && tracks[index + 1].permalink === selectedTrack.track.permalink : previous(`d${track.id}`),
           next: $mq === 'desktop' ? tracks[index - 1] && tracks[index - 1].permalink === selectedTrack.track.permalink : next(`d${track.id}`),
@@ -31,6 +31,14 @@ import './styles.scss';
 export default {
   name: 'Band',
   props: ['scrollTop'],
+  mounted: function() {
+    setTimeout(() => {
+      for (var prop in this.$refs) {
+        this.$refs[prop][0].classList.add('selected');
+        break;
+      }
+    }, 500);
+  },
   computed: mapState({
     tracks: state => state.tracks.all,
     selectedTrack: state => state.tracks.selectedTrack
@@ -51,7 +59,7 @@ export default {
     selected(ref) {
       if(this.$refs[ref]) {
         const {top, bottom, height, treshold} = this.getPositionInfo(this.$refs[ref][0]);
-        return top >= treshold && top < treshold + height;
+        return top > (treshold - 10) && top <= (treshold + 10) + height;
         return false;
       }
     },
